@@ -1,0 +1,169 @@
+{
+  "history": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "hey",
+        "exit",
+        "hey bro",
+        "hey bro"
+      ],
+      "responses": [
+        "Hello, got any gaming questions?",
+        "Hello, ready to play?",
+        "Yo! How can I help with your gaming journey?",
+        "Hello, ready to play?"
+      ],
+      "dates": [
+        1750002827,
+        1750002904,
+        1750077122,
+        1750077149
+      ]
+    },
+    {
+      "tag": "gaming_culture",
+      "patterns": [
+        "tell me about games"
+      ],
+      "responses": [
+        "Game mods let players create custom content and experiences."
+      ],
+      "dates": [
+        1750002834
+      ]
+    },
+    {
+      "tag": "game_facts",
+      "patterns": [
+        "i wanna game fact"
+      ],
+      "responses": [
+        "The longest gaming marathon on Minecraft lasted over 35 hours!"
+      ],
+      "dates": [
+        1750002848
+      ]
+    },
+    {
+      "tag": "game_list",
+      "patterns": [
+        "i wanna play some game",
+        "what can i play?"
+      ],
+      "responses": [
+        "League of Legends, Dota 2, and CS:GO are always great competitive choices.",
+        "You should try Elden Ring, Fortnite, or The Legend of Zelda: Tears of the Kingdom!"
+      ],
+      "dates": [
+        1750002855,
+        1750077172
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "bye",
+        "bye"
+      ],
+      "responses": [
+        "Goodbye, stay awesome!",
+        "Farewell, gamer!"
+      ],
+      "dates": [
+        1750002908,
+        1750077614
+      ]
+    },
+    {
+      "tag": "funny",
+      "patterns": [
+        "how about some joke"
+      ],
+      "responses": [
+        "Why don't skeletons play video games? They don't have the guts!"
+      ],
+      "dates": [
+        1750077202
+      ]
+    },
+    {
+      "tag": "game_tips",
+      "patterns": [
+        "very funny i suck at games how can i improve",
+        "interesting how can i improve my skills more",
+        "i wanna know how to be a pro gamer like you"
+      ],
+      "responses": [
+        "Always check your surroundings and explore for hidden items!",
+        "Team communication is key in multiplayer games!",
+        "Customize your controls for better comfort and reaction speed."
+      ],
+      "dates": [
+        1750077234,
+        1750077251,
+        1750077592
+      ]
+    },
+    {
+      "tag": "game_soundtracks",
+      "patterns": [
+        "i wanna listen to some game soundtrack"
+      ],
+      "responses": [
+        "Video game music often adapts dynamically to player actions."
+      ],
+      "dates": [
+        1750077271
+      ]
+    },
+    {
+      "tag": "gaming_events",
+      "patterns": [
+        "i want to attend a gaming event"
+      ],
+      "responses": [
+        "Gamescom in Germany attracts thousands of gaming fans every year."
+      ],
+      "dates": [
+        1750077377
+      ]
+    },
+    {
+      "tag": "game_characters",
+      "patterns": [
+        "i wanna know about iconic game character"
+      ],
+      "responses": [
+        "Kratos from God of War is a popular anti-hero known for his strength."
+      ],
+      "dates": [
+        1750077426
+      ]
+    },
+    {
+      "tag": "game_history",
+      "patterns": [
+        "i wanna know something about game history"
+      ],
+      "responses": [
+        "The original Game Boy was released in 1989 and revolutionized portable gaming."
+      ],
+      "dates": [
+        1750077533
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": [
+        "thank you bro"
+      ],
+      "responses": [
+        "Happy to help, adventurer!"
+      ],
+      "dates": [
+        1750077604
+      ]
+    }
+  ]
+}

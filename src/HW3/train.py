@@ -9,6 +9,8 @@ from torch.utils.data import Dataset, DataLoader
 from nltk_utils import bag_of_words, tokenize, stem
 from model import NeuralNet
 
+from chat_train_logger import ChatTrainLogger, ChatTrainLogEntry
+
 with open('intents.json', 'r') as f:
     intents = json.load(f)
 
@@ -91,28 +93,45 @@ model = NeuralNet(input_size, hidden_size, output_size).to(device)
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
-# Train the model
-for epoch in range(num_epochs):
-    for (words, labels) in train_loader:
-        words = words.to(device)
-        labels = labels.to(dtype=torch.long).to(device)
-        
-        # Forward pass
-        outputs = model(words)
-        # if y would be one-hot, we must apply
-        # labels = torch.max(labels, 1)[1]
-        loss = criterion(outputs, labels)
-        
-        # Backward and optimize
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
-        
-    if (epoch+1) % 100 == 0:
-        print (f'Epoch [{epoch+1}/{num_epochs}], Loss: {loss.item():.4f}')
+experiment_name = 'chatbot1'
 
+with ChatTrainLogger(experiment_name, num_epochs) as train_logger:
+    # Train the model
+    for epoch in range(num_epochs):
+        total_loss = 0.0
+        true_set = []
+        pred_set = []
 
-print(f'final loss: {loss.item():.4f}')
+        for (words, labels) in train_loader:
+            words = words.to(device)
+            labels = labels.to(dtype=torch.long).to(device)
+
+            # Forward pass
+            outputs = model(words)
+            # if y would be one-hot, we must apply
+            # labels = torch.max(labels, 1)[1]
+            loss = criterion(outputs, labels)
+
+            # Backward and optimize
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+
+            total_loss += loss.item()
+
+            _, predicted = torch.max(outputs, 1)
+            true_set.extend(labels.cpu().numpy())
+            pred_set.extend(predicted.cpu().numpy())
+
+        entry = ChatTrainLogEntry(
+            epoch,
+            total_loss,
+            true_set,
+            pred_set,
+        )
+        train_logger.log(entry)
+
+print(f'final loss: {total_loss:.4f}')
 
 data = {
 "model_state": model.state_dict(),

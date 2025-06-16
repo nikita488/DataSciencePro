@@ -1,84 +1,328 @@
 {
-  "intents": [
-    {
-      "tag": "greeting",
-      "patterns": [
-        "Hi",
-        "Hey",
-        "How are you",
-        "Is anyone there?",
-        "Hello",
-        "Good day"
-      ],
-      "responses": [
-        "Hey :-)",
-        "Hello, thanks for visiting",
-        "Hi there, what can I do for you?",
-        "Hi there, how can I help?"
-      ]
-    },
-    {
-      "tag": "goodbye",
-      "patterns": ["Bye", "See you later", "Goodbye"],
-      "responses": [
-        "See you later, thanks for visiting",
-        "Have a nice day",
-        "Bye! Come back again soon."
-      ]
-    },
-    {
-      "tag": "thanks",
-      "patterns": ["Thanks", "Thank you", "That's helpful", "Thank's a lot!"],
-      "responses": ["Happy to help!", "Any time!", "My pleasure"]
-    },
-    {
-      "tag": "items",
-      "patterns": [
-        "Which items do you have?",
-        "What kinds of items are there?",
-        "What do you sell?"
-      ],
-      "responses": [
-        "We sell coffee and tea",
-        "We have coffee and tea"
-      ]
-    },
-    {
-      "tag": "payments",
-      "patterns": [
-        "Do you take credit cards?",
-        "Do you accept Mastercard?",
-        "Can I pay with Paypal?",
-        "Are you cash only?"
-      ],
-      "responses": [
-        "We accept VISA, Mastercard and Paypal",
-        "We accept most major credit cards, and Paypal"
-      ]
-    },
-    {
-      "tag": "delivery",
-      "patterns": [
-        "How long does delivery take?",
-        "How long does shipping take?",
-        "When do I get my delivery?"
-      ],
-      "responses": [
-        "Delivery takes 2-4 days",
-        "Shipping takes 2-4 days"
-      ]
-    },
-    {
-      "tag": "funny",
-      "patterns": [
-        "Tell me a joke!",
-        "Tell me something funny!",
-        "Do you know a joke?"
-      ],
-      "responses": [
-        "Why did the hipster burn his mouth? He drank the coffee before it was cool.",
-        "What did the buffalo say when his son left for college? Bison."
-      ]
-    }
-  ]
+    "intents": [
+        {
+            "tag": "greeting",
+            "patterns": [
+                "Hi",
+                "Hey",
+                "Hello",
+                "Anyone here?",
+                "What's up?",
+                "Yo",
+                "Greetings",
+                "Howdy",
+                "Hey there",
+                "Sup?"
+            ],
+            "responses": [
+                "Hey gamer!",
+                "Hello, ready to play?",
+                "Hi there! Need game tips?",
+                "Yo! How can I help with your gaming journey?",
+                "Greetings, player!",
+                "Welcome, let's talk games!",
+                "Hey, what game are you into today?",
+                "Hi, looking for game advice?",
+                "Hello, got any gaming questions?",
+                "Yo, ready to level up?"
+            ]
+        },
+        {
+            "tag": "goodbye",
+            "patterns": [
+                "Bye",
+                "See you later",
+                "Goodbye",
+                "Catch you later",
+                "Talk to you soon",
+                "Peace out",
+                "Gotta go",
+                "Later",
+                "I'm off",
+                "Logging off"
+            ],
+            "responses": [
+                "GG! See you next time!",
+                "Later, have fun gaming!",
+                "Bye! Come back for more game tips!",
+                "Catch you later, player!",
+                "Goodbye, stay awesome!",
+                "See you on the leaderboard!",
+                "Take care, happy gaming!",
+                "Farewell, gamer!",
+                "Until next time, play well!",
+                "Goodbye, thanks for chatting!"
+            ]
+        },
+        {
+            "tag": "thanks",
+            "patterns": [
+                "Thanks",
+                "Thank you",
+                "Much appreciated",
+                "That's helpful",
+                "Thanks for the help",
+                "Appreciate it",
+                "You're the best",
+                "Thanks, buddy",
+                "Thank you so much",
+                "Cheers"
+            ],
+            "responses": [
+                "No problem, happy gaming!",
+                "Any time, player!",
+                "You're welcome, let's level up!",
+                "Glad I could help!",
+                "Always here for you, gamer!",
+                "My pleasure, champion!",
+                "Any time, hero!",
+                "You're welcome, game on!",
+                "I got you, player!",
+                "Happy to help, adventurer!"
+            ]
+        },
+        {
+            "tag": "game_list",
+            "patterns": [
+                "What games do you recommend?",
+                "What should I play?",
+                "List some good games",
+                "Suggest a game",
+                "Can you recommend a game?",
+                "Top games right now?",
+                "What are the best games?",
+                "Tell me popular games",
+                "What’s trending in games?",
+                "What games are hot now?"
+            ],
+            "responses": [
+                "You should try Elden Ring, Fortnite, or The Legend of Zelda: Tears of the Kingdom!",
+                "How about checking out Minecraft, Valorant, or God of War: Ragnarok?",
+                "Call of Duty, Apex Legends, and FIFA are really popular right now.",
+                "Try Animal Crossing, Stardew Valley, or Celeste for something chill.",
+                "Check out Final Fantasy XVI, Cyberpunk 2077, or The Witcher 3.",
+                "Horizon Forbidden West and Ghost of Tsushima are amazing adventures.",
+                "Looking for multiplayer? Try Overwatch 2 or Rocket League!",
+                "League of Legends, Dota 2, and CS:GO are always great competitive choices.",
+                "Try indie gems like Hades, Hollow Knight, or Dead Cells!",
+                "Explore big worlds in Red Dead Redemption 2 or Skyrim!"
+            ]
+        },
+        {
+            "tag": "game_facts",
+            "patterns": [
+                "Tell me a game fact",
+                "Do you know any gaming trivia?",
+                "Share a fun fact about games",
+                "Give me a random game fact",
+                "Got any gaming facts?",
+                "Tell me something cool about games",
+                "Say an interesting fact",
+                "I want to hear a game fact",
+                "Give me gaming knowledge",
+                "Blow my mind with a game fact"
+            ],
+            "responses": [
+                "The first video game ever created was 'Tennis for Two' in 1958.",
+                "Pac-Man was originally designed to attract women to arcades.",
+                "The longest gaming marathon on Minecraft lasted over 35 hours!",
+                "The PlayStation was originally a Nintendo project!",
+                "In Japan, Kirby is pink, but he was almost yellow!",
+                "The voice of Mario has been the same actor since 1995.",
+                "The most expensive video game ever made is Grand Theft Auto V.",
+                "Tetris is one of the few games that is considered nearly perfect in design.",
+                "Wii Sports is the best-selling single-platform game of all time.",
+                "The Xbox was almost called the 'DirectX Box'."
+            ]
+        },
+        {
+            "tag": "game_tips",
+            "patterns": [
+                "Give me some game tips",
+                "Any tips for beginners?",
+                "How do I get better at gaming?",
+                "Pro tips, please",
+                "Tips for leveling up quickly?",
+                "How can I win more often?",
+                "Give me a strategy",
+                "How do I beat this boss?",
+                "What are some game tricks?",
+                "Tips to improve my skills?"
+            ],
+            "responses": [
+                "Always check your surroundings and explore for hidden items!",
+                "Upgrade your equipment early for a smoother experience.",
+                "Learn enemy patterns to dodge and counter effectively.",
+                "Practice makes perfect—keep playing and you'll improve!",
+                "Stay patient and focus on timing during boss fights.",
+                "Customize your controls for better comfort and reaction speed.",
+                "Watch pro players or tutorials to learn advanced strategies.",
+                "Team communication is key in multiplayer games!",
+                "Focus on completing side quests to gain extra rewards.",
+                "Try different playstyles to find what works best for you."
+            ]
+        },
+        {
+            "tag": "funny",
+            "patterns": [
+                "Tell me a gaming joke",
+                "Got any game jokes?",
+                "Make me laugh",
+                "Say something funny",
+                "Tell me something hilarious",
+                "Do you know a gaming pun?",
+                "Entertain me",
+                "Cheer me up with a joke",
+                "Give me a funny story",
+                "Say something silly about games"
+            ],
+            "responses": [
+                "Why don't skeletons play video games? They don't have the guts!",
+                "Why was the gamer so good at basketball? He had all the best shots!",
+                "Why did Mario break up with Princess Peach? Because she was acting a little Goomba!",
+                "Why did the gamer bring a broom? To sweep the leaderboard!",
+                "Why don't video games ever get sunburned? They stay in the shade!",
+                "Why was the computer cold? It left its Windows open!",
+                "Why don’t gamers ever get lost? They always have a map!",
+                "Why was the gamer a great musician? Because he had perfect timing!",
+                "Why don't consoles ever get tired? They always stay on standby!",
+                "Why did the Tetris player go to therapy? They couldn’t find where they fit in!"
+            ]
+        },
+        {
+            "tag": "gaming_culture",
+            "patterns": [
+                "Tell me something about gaming culture",
+                "What can you say about gamer culture?",
+                "Share something about gaming communities",
+                "Talk about gaming in general",
+                "What do you know about gaming culture?",
+                "Give me some info about gamers",
+                "Tell me about the gaming world",
+                "Say something about gaming lifestyle",
+                "What’s interesting about gamer culture?",
+                "Tell me about gaming habits"
+            ],
+            "responses": [
+                "Gaming culture includes communities, conventions, and online forums.",
+                "Esports is competitive gaming played at a professional level.",
+                "Many gamers watch streams on platforms like Twitch and YouTube.",
+                "Speedrunning is a community focused on completing games as fast as possible.",
+                "Gamer slang includes words like 'GG', 'noob', and 'OP'.",
+                "Gaming conventions are events where fans meet, compete, and celebrate games.",
+                "Cosplaying as game characters is a big part of gamer culture.",
+                "Online multiplayer games foster social interaction and teamwork.",
+                "Game mods let players create custom content and experiences.",
+                "Streaming has made gaming a spectator sport worldwide."
+            ]
+        },
+        {
+            "tag": "game_soundtracks",
+            "patterns": [
+                "Tell me about game music",
+                "Share facts about game soundtracks",
+                "What do you know about video game music?",
+                "Talk about gaming soundtracks",
+                "Give me info on game composers",
+                "What’s interesting about game music?",
+                "Tell me something about music in games",
+                "Say something about video game scores",
+                "What makes game music special?",
+                "Tell me about iconic game tunes"
+            ],
+            "responses": [
+                "Nobuo Uematsu composed the music for many Final Fantasy games.",
+                "The theme from The Legend of Zelda is one of the most recognizable in gaming.",
+                "Video game music often adapts dynamically to player actions.",
+                "Some games have live orchestras perform their soundtracks.",
+                "Chiptune music originated from early video game consoles.",
+                "The soundtrack for Halo was composed by Martin O'Donnell and Michael Salvatori.",
+                "Many gamers enjoy listening to game soundtracks outside of playing.",
+                "Music in games helps create atmosphere and emotion.",
+                "The original Doom soundtrack was groundbreaking for its time.",
+                "Game music concerts have become popular worldwide."
+            ]
+        },
+        {
+            "tag": "gaming_events",
+            "patterns": [
+                "Tell me about gaming events",
+                "Share info about game conventions",
+                "What are popular gaming events?",
+                "Talk about esports tournaments",
+                "Give me facts about gaming expos",
+                "What happens at gaming conventions?",
+                "Tell me something about game competitions",
+                "Say something about gaming festivals",
+                "What’s big in the gaming event world?",
+                "Tell me about game launch events"
+            ],
+            "responses": [
+                "E3 is one of the biggest gaming conventions in the world.",
+                "Gamescom in Germany attracts thousands of gaming fans every year.",
+                "The International is a huge esports tournament for Dota 2.",
+                "PAX (Penny Arcade Expo) celebrates gaming culture with panels and demos.",
+                "BlizzCon showcases games from Blizzard Entertainment and their community.",
+                "TwitchCon is a convention for game streamers and fans.",
+                "Many gaming events offer hands-on demos of upcoming games.",
+                "Speedrunning marathons often happen at events like SGDQ.",
+                "Game launch parties are popular to celebrate big new releases.",
+                "Esports finals are watched by millions of fans worldwide."
+            ]
+        },
+        {
+            "tag": "game_characters",
+            "patterns": [
+                "Tell me about game characters",
+                "Share info about famous video game characters",
+                "Who are some popular game characters?",
+                "Talk about heroes in games",
+                "Give me facts about gaming characters",
+                "What can you say about game characters?",
+                "Tell me something about video game heroes",
+                "Say something about game villains",
+                "Who are iconic characters in games?",
+                "Tell me about gaming protagonists"
+            ],
+            "responses": [
+                "Mario is one of the most iconic video game characters worldwide.",
+                "Link from The Legend of Zelda is known for his bravery and courage.",
+                "Lara Croft is a famous female protagonist in the Tomb Raider series.",
+                "Master Chief is the central character in the Halo franchise.",
+                "Sonic the Hedgehog is known for his incredible speed.",
+                "Samus Aran was one of the first major female heroes in gaming.",
+                "Kratos from God of War is a popular anti-hero known for his strength.",
+                "The Witcher, Geralt of Rivia, is famous for monster hunting.",
+                "Pikachu is the most recognizable Pokémon and a beloved mascot.",
+                "Bowser is the main antagonist in many Mario games."
+            ]
+        },
+        {
+            "tag": "game_history",
+            "patterns": [
+                "Tell me something about game history",
+                "Share a fact about the history of games",
+                "What do you know about gaming history?",
+                "Talk about the origins of video games",
+                "Give me some game history info",
+                "What’s interesting about game history?",
+                "Tell me about old video games",
+                "Say something about gaming in the past",
+                "Explain how games started",
+                "Tell me about the evolution of games"
+            ],
+            "responses": [
+                "The first arcade video game was Computer Space, released in 1971.",
+                "Atari was one of the pioneers of home video gaming.",
+                "The game Pong was a huge hit and helped popularize video games.",
+                "The 8-bit era introduced classics like Super Mario Bros and The Legend of Zelda.",
+                "Online multiplayer games started becoming popular in the late 90s.",
+                "The original Game Boy was released in 1989 and revolutionized portable gaming.",
+                "The rise of 3D gaming began with consoles like the Nintendo 64 and PlayStation.",
+                "Esports grew rapidly during the 2000s with games like StarCraft and Counter-Strike.",
+                "Mobile gaming exploded in the 2010s with the rise of smartphones.",
+                "Indie games have become a major part of gaming culture since the 2010s."
+            ]
+        }
+    ]
 }

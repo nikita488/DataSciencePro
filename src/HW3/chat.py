@@ -6,6 +6,8 @@ import torch
 from model import NeuralNet
 from nltk_utils import bag_of_words, tokenize
 
+from chat_history import ChatHistory
+
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 with open('intents.json', 'r') as json_data:
@@ -25,14 +27,19 @@ model = NeuralNet(input_size, hidden_size, output_size).to(device)
 model.load_state_dict(model_state)
 model.eval()
 
-bot_name = "Sam"
+history = ChatHistory('chat_history.json')
+
+bot_name = "ProGamer228"
+probability = 0.75
 print("Let's chat! (type 'quit' to exit)")
 while True:
     # sentence = "do you use credit cards?"
     sentence = input("You: ")
+    print(f'You: {sentence}') # VS Code не отображает инпуты в ноутбуке
     if sentence == "quit":
         break
 
+    unmodified_sentence = sentence
     sentence = tokenize(sentence)
     X = bag_of_words(sentence, all_words)
     X = X.reshape(1, X.shape[0])
@@ -45,9 +52,12 @@ while True:
 
     probs = torch.softmax(output, dim=1)
     prob = probs[0][predicted.item()]
-    if prob.item() > 0.75:
+    if prob.item() > probability:
         for intent in intents['intents']:
             if tag == intent["tag"]:
-                print(f"{bot_name}: {random.choice(intent['responses'])}")
+                response = random.choice(intent['responses'])
+                print(f"{bot_name}: {response}")
+                history.add_message(tag, unmodified_sentence, response)
+                history.save()
     else:
         print(f"{bot_name}: I do not understand...")
