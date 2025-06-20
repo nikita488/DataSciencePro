@@ -27,3 +27,5 @@
     - Добавить логирование вопросов/ответов.
     
     **Решение:** [HW3](src/HW3/HW3.ipynb)
+4. **Домашняя Работа №4**<br>
+*Реализовать GAN на выбор: https://github.com/eriklindernoren/PyTorch-GAN*<br>
