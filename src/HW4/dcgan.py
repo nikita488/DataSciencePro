@@ -17,22 +17,37 @@ import torch
 from pathlib import Path
 from utils import save_checkpoint, load_checkpoint
 
-os.makedirs("images", exist_ok=True)
+cli = False
 
-parser = argparse.ArgumentParser()
-parser.add_argument("--n_epochs", type=int, default=200, help="number of epochs of training")
-parser.add_argument("--batch_size", type=int, default=64, help="size of the batches")
-parser.add_argument("--lr", type=float, default=0.0002, help="adam: learning rate")
-parser.add_argument("--b1", type=float, default=0.5, help="adam: decay of first order momentum of gradient")
-parser.add_argument("--b2", type=float, default=0.999, help="adam: decay of first order momentum of gradient")
-parser.add_argument("--n_cpu", type=int, default=8, help="number of cpu threads to use during batch generation")
-parser.add_argument("--latent_dim", type=int, default=100, help="dimensionality of the latent space")
-parser.add_argument("--img_size", type=int, default=32, help="size of each image dimension")
-parser.add_argument("--channels", type=int, default=1, help="number of image channels")
-parser.add_argument("--sample_interval", type=int, default=400, help="interval between image sampling")
-parser.add_argument("--checkpoint_interval", type=int, default=10, help="interval between checkpoint saving")
-opt = parser.parse_args()
-print(opt)
+if cli:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--n_epochs", type=int, default=200, help="number of epochs of training")
+    parser.add_argument("--batch_size", type=int, default=64, help="size of the batches")
+    parser.add_argument("--lr", type=float, default=0.0002, help="adam: learning rate")
+    parser.add_argument("--b1", type=float, default=0.5, help="adam: decay of first order momentum of gradient")
+    parser.add_argument("--b2", type=float, default=0.999, help="adam: decay of first order momentum of gradient")
+    parser.add_argument("--n_cpu", type=int, default=8, help="number of cpu threads to use during batch generation")
+    parser.add_argument("--latent_dim", type=int, default=100, help="dimensionality of the latent space")
+    parser.add_argument("--img_size", type=int, default=32, help="size of each image dimension")
+    parser.add_argument("--channels", type=int, default=1, help="number of image channels")
+    parser.add_argument("--sample_interval", type=int, default=400, help="interval between image sampling")
+    parser.add_argument("--checkpoint_interval", type=int, default=10, help="interval between checkpoint saving")
+    opt = parser.parse_args()
+    print(opt)
+else:
+    opt = argparse.Namespace()
+    opt.n_epochs = 1000
+    opt.batch_size = 64
+    opt.lr = 0.0002
+    opt.b1 = 0.5
+    opt.b2 = 0.99
+    opt.n_cpu = 8
+    opt.latent_dim = 100
+    opt.img_size = 32
+    opt.channels = 1
+    opt.sample_interval = 400
+    opt.checkpoint_interval = 10
+    print(opt)
 
 cuda = True if torch.cuda.is_available() else False
 
@@ -136,15 +151,19 @@ optimizer_D = torch.optim.Adam(discriminator.parameters(), lr=opt.lr, betas=(opt
 Tensor = torch.cuda.FloatTensor if cuda else torch.FloatTensor
 
 save_path = Path.cwd()
-start_epoch = 0
+checkpoints_path = save_path / "checkpoints"
+images_path = save_path / "images"
 
-save_path.mkdir(parents=True, exist_ok=True)
+checkpoints_path.mkdir(parents=True, exist_ok=True)
+images_path.mkdir(parents=True, exist_ok=True)
+
+start_epoch = 0
 
 # ----------
 #  Loading
 # ----------
 
-checkpoint_path = None #save_path / "checkpoint/checkpoint.tar"
+checkpoint_path = None #save_path / "checkpoint.tar"
 
 if checkpoint_path:
     start_epoch = load_checkpoint(checkpoint_path, generator, optimizer_G, discriminator, optimizer_D)
@@ -209,7 +228,7 @@ for epoch in range(start_epoch, opt.n_epochs, 1):
 
         batches_done = epoch * len(dataloader) + i
         if batches_done % opt.sample_interval == 0:
-            save_image(gen_imgs.data[:25], save_path / f"images/{epoch}_{batches_done}.png", nrow=5, normalize=True)
+            save_image(gen_imgs.data[:25], images_path / f"{epoch}_{batches_done}.png", nrow=5, normalize=True)
     
     if epoch % opt.checkpoint_interval == 0:
-        save_checkpoint(epoch, generator, optimizer_G, discriminator, optimizer_D)
+        save_checkpoint(checkpoints_path / f"checkpoint_{epoch}.tar", epoch, generator, optimizer_G, discriminator, optimizer_D)
