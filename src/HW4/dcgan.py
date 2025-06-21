@@ -14,6 +14,9 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch
 
+from pathlib import Path
+from utils import save_checkpoint, load_checkpoint
+
 os.makedirs("images", exist_ok=True)
 
 parser = argparse.ArgumentParser()
@@ -27,6 +30,7 @@ parser.add_argument("--latent_dim", type=int, default=100, help="dimensionality 
 parser.add_argument("--img_size", type=int, default=32, help="size of each image dimension")
 parser.add_argument("--channels", type=int, default=1, help="number of image channels")
 parser.add_argument("--sample_interval", type=int, default=400, help="interval between image sampling")
+parser.add_argument("--checkpoint_interval", type=int, default=10, help="interval between checkpoint saving")
 opt = parser.parse_args()
 print(opt)
 
@@ -106,20 +110,15 @@ adversarial_loss = torch.nn.BCELoss()
 generator = Generator()
 discriminator = Discriminator()
 
-if cuda:
-    generator.cuda()
-    discriminator.cuda()
-    adversarial_loss.cuda()
-
 # Initialize weights
 generator.apply(weights_init_normal)
 discriminator.apply(weights_init_normal)
 
 # Configure data loader
-os.makedirs("../../data/mnist", exist_ok=True)
+os.makedirs("./data", exist_ok=True)
 dataloader = torch.utils.data.DataLoader(
     datasets.MNIST(
-        "../../data/mnist",
+        "./data",
         train=True,
         download=True,
         transform=transforms.Compose(
@@ -136,11 +135,30 @@ optimizer_D = torch.optim.Adam(discriminator.parameters(), lr=opt.lr, betas=(opt
 
 Tensor = torch.cuda.FloatTensor if cuda else torch.FloatTensor
 
+save_path = Path.cwd()
+start_epoch = 0
+
+# ----------
+#  Loading
+# ----------
+
+checkpoint_path = None #save_path / "checkpoint/checkpoint.tar"
+
+if checkpoint_path:
+    start_epoch = load_checkpoint(checkpoint_path, generator, optimizer_G, discriminator, optimizer_D)
+    generator.train()
+    discriminator.train()
+
+if cuda:
+    generator.cuda()
+    discriminator.cuda()
+    adversarial_loss.cuda()
+
 # ----------
 #  Training
 # ----------
 
-for epoch in range(opt.n_epochs):
+for epoch in range(start_epoch, opt.n_epochs, 1):
     for i, (imgs, _) in enumerate(dataloader):
 
         # Adversarial ground truths
@@ -189,4 +207,7 @@ for epoch in range(opt.n_epochs):
 
         batches_done = epoch * len(dataloader) + i
         if batches_done % opt.sample_interval == 0:
-            save_image(gen_imgs.data[:25], "images/%d.png" % batches_done, nrow=5, normalize=True)
+            save_image(gen_imgs.data[:25], save_path / f"images/{epoch}_{batches_done}.png", nrow=5, normalize=True)
+    
+    if epoch % opt.checkpoint_interval == 0:
+        save_checkpoint(epoch, generator, optimizer_G, discriminator, optimizer_D)
