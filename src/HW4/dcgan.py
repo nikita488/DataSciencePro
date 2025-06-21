@@ -138,6 +138,8 @@ Tensor = torch.cuda.FloatTensor if cuda else torch.FloatTensor
 save_path = Path.cwd()
 start_epoch = 0
 
+save_path.mkdir(parents=True, exist_ok=True)
+
 # ----------
 #  Loading
 # ----------
