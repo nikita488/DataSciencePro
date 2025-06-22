@@ -125,6 +125,11 @@ adversarial_loss = torch.nn.BCELoss()
 generator = Generator()
 discriminator = Discriminator()
 
+if cuda:
+    generator.cuda()
+    discriminator.cuda()
+    adversarial_loss.cuda()
+
 # Initialize weights
 generator.apply(weights_init_normal)
 discriminator.apply(weights_init_normal)
@@ -169,11 +174,6 @@ if checkpoint_path:
     start_epoch = load_checkpoint(checkpoint_path, generator, optimizer_G, discriminator, optimizer_D)
     generator.train()
     discriminator.train()
-
-if cuda:
-    generator.cuda()
-    discriminator.cuda()
-    adversarial_loss.cuda()
 
 # ----------
 #  Training
