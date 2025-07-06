@@ -32,7 +32,7 @@ def get_current_time():
     return int(datetime.now(timezone.utc).timestamp())
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_text(f'Привет, {update.effective_user.first_name}! Пришли мне фотографию, и я определю есть ли на ней автомобильные номера :)')
+    await update.message.reply_text(f'Привет, {update.effective_user.first_name}!\nПришли мне фотографию, и я определю есть ли на ней автомобильные номера :)')
 
 async def photo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_chat_action(action=ChatAction.TYPING)
@@ -55,7 +55,7 @@ async def photo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         annotated_images = results.crop()
 
         if not annotated_images:
-            await update.message.reply_text(f'Нет результатов')
+            await update.message.reply_text(f'Автомобильные номера не обнаружены')
             return
 
         for annotation in annotated_images:
