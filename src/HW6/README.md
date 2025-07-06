@@ -23,6 +23,10 @@
 
 # Установка и запуск:
 
+**Клонировать YOLOv5:**
+
+```git clone https://github.com/ultralytics/yolov5.git```
+
 **Установить зависимости:**
 
 ```pip install -r requirements.txt```
