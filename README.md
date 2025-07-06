@@ -47,3 +47,5 @@
 ![result](src/HW5/result_2.gif)<br>
 *Эпизод 3:*<br>
 ![result](src/HW5/result_3.gif)
+6. **Домашняя Работа №6 (Финальный проект)**<br>
+[Решение](src/HW6/README.md)
