@@ -1,0 +1,4 @@
+datasets/
+inputs/
+runs/
+model.pt
