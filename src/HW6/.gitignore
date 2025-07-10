@@ -1,4 +1,4 @@
 datasets/
-inputs/
+logs/
 runs/
 model.pt

@@ -48,4 +48,14 @@
 *Эпизод 3:*<br>
 ![result](src/HW5/result_3.gif)
 6. **Домашняя Работа №6 (Финальный проект)**<br>
-[Решение](src/HW6/README.md)
+Реализовать нейросеть:<br>
+     - YOLOv5<br>
+     - РНН<br>
+     - LSTM<br>
+     - GRU<br>
+     - NLP<br>
+     - GAN<br>
+     - Трансформер<br>
+
+    Обученную нейросеть развернуть или в API или в telegram.<br>
+    [Решение](src/HW6/README.md)
