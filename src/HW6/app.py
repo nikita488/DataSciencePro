@@ -45,6 +45,7 @@ class ImageOrientation(Enum):
                 return MAX_SIZE
 
 debug = False
+debug_image = False
 
 init_time = datetime.now()
 
@@ -151,17 +152,18 @@ async def photo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         results = model(img, size=size, augment=augment)
 
         if debug:
-            last_ims = results.ims.copy()
-            rendered = results.render()
-
-            results.ims = last_ims
-
-            for render_data in rendered:
-                buffered = BytesIO()
-
-                annotation_image = Image.fromarray(render_data)
-                annotation_image.save(buffered, format='JPEG', quality=100, subsampling=0)
-                await update.message.reply_photo(buffered.getvalue())
+            if debug_image:
+                last_ims = results.ims.copy()
+                rendered = results.render()
+    
+                results.ims = last_ims
+    
+                for render_data in rendered:
+                    buffered = BytesIO()
+    
+                    annotation_image = Image.fromarray(render_data)
+                    annotation_image.save(buffered, format='JPEG', quality=100, subsampling=0)
+                    await update.message.reply_photo(buffered.getvalue())
 
             results.print()
             results.save()
