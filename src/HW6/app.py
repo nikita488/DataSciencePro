@@ -13,6 +13,9 @@ from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, ContextTypes, filters
 from telegram.constants import ChatAction
 
+MIN_SIZE = 240
+MAX_SIZE = 320
+
 class ImageOrientation(Enum):
     LANDSCAPE = 0
     PORTRAIT = 1
@@ -30,16 +33,16 @@ class ImageOrientation(Enum):
     def min_width(self) -> int:
         match self:
             case ImageOrientation.LANDSCAPE:
-                return 640
+                return MAX_SIZE
             case ImageOrientation.PORTRAIT | ImageOrientation.SQUARE:
-                return 480
+                return MIN_SIZE
         
     def min_height(self) -> int:
         match self:
             case ImageOrientation.LANDSCAPE | ImageOrientation.SQUARE:
-                return 480
+                return MIN_SIZE
             case ImageOrientation.PORTRAIT:
-                return 640
+                return MAX_SIZE
 
 debug = False
 
@@ -117,7 +120,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         '- фотография должна содержать транспортное средство целиком или его часть (фотография только номерного знака крупным планом не подойдет);',
         '- транспортное средство на фотографии должно содержать хотя бы один номерной знак;',
         '- номерные знаки должны располагаться в привычных местах на транспортном средстве;',
-        '- фотография должна быть хорошего качества и высокого разрешения (не менее 640x480, 480x640, 480x480 пикселей);',
+        f'- фотография должна быть хорошего качества и высокого разрешения (не менее {MAX_SIZE}x{MIN_SIZE}, {MIN_SIZE}x{MAX_SIZE}, {MIN_SIZE}x{MIN_SIZE} пикселей);',
     ]
     await update.message.reply_text('\n'.join(message))
 
